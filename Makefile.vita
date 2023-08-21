@@ -90,13 +90,15 @@ LIBRETRO_SOURCES += \
 
 OBJS = $(DESMUME_SOURCES:%.cpp=$(SOURCE_DIR)/%.o) $(FRONTEND_SOURCES:%.cpp=$(SOURCE_DIR)/%.o) $(LIBRETRO_SOURCES:%.c=$(SOURCE_DIR)/%.o)
 
-LIBS = -lvita2d -lSceKernel_stub -lSceDisplay_stub -lSceGxm_stub -lSceNet_stub \
+LIBS = -lvita2d -lvitaGL -lSceShaccCgExt -lSceShaccCg_stub -lmathneon -ltaihen_stub \
+	-lSceLibKernel_stub -lSceDisplay_stub -lSceGxm_stub -lSceNet_stub \
 	-lSceSysmodule_stub -lSceCtrl_stub -lSceTouch_stub -lScePgf_stub -lSceAudio_stub \
-	-lSceCommonDialog_stub -lScePower_stub -lfreetype -lpng -ljpeg -lz -lm -lc -lstdc++
+	-lSceCommonDialog_stub -lScePower_stub -lfreetype -lpng -ljpeg -lz -lm -lc -lstdc++ \
+	-lSceAppMgr_stub
 
 PREFIX  = arm-vita-eabi
 CC      = $(PREFIX)-gcc
-CFLAGS  += -O3 -march=armv7-a -mfloat-abi=hard -ffast-math -fsingle-precision-constant
+CFLAGS  += -O3 -march=armv7-a -mfloat-abi=hard -ffast-math -fsingle-precision-constant -DENABLE_SSE2 -DENABLE_SSE3 -DENABLE_SSE4_1
 CFLAGS  += -Wl,-q -Wall -DVITA $(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) -Wfatal-errors -DHAVE_LIBZ -DHAVE_JIT
 ASFLAGS = $(CFLAGS)
 

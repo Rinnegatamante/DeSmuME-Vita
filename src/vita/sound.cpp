@@ -85,9 +85,9 @@ static int Sound_Thread(SceSize args, void *argp)
 {
    int vols[2]={VITA_AUDIO_MAX_VOLUME,VITA_AUDIO_MAX_VOLUME};
 
-   sceAudioOutSetVolume(handle,SCE_AUDIO_VOLUME_FLAG_L_CH|SCE_AUDIO_VOLUME_FLAG_R_CH,vols);
+   sceAudioOutSetVolume(handle, (SceAudioOutChannelFlag)(SCE_AUDIO_VOLUME_FLAG_L_CH|SCE_AUDIO_VOLUME_FLAG_R_CH),vols);
 
-   sceAudioOutSetConfig(handle, -1, -1, -1);
+   sceAudioOutSetConfig(handle, -1, -1, (SceAudioOutMode)-1);
    
    while (!stopAudio)
    {

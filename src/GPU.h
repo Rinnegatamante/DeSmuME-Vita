@@ -26,6 +26,9 @@
 
 #include "types.h"
 
+#ifdef __vita__
+#include "vita/sse2neon.h"
+#else
 #ifdef ENABLE_SSE2
 #include <emmintrin.h>
 #endif
@@ -37,7 +40,7 @@
 #ifdef ENABLE_SSE4_1
 #include <smmintrin.h>
 #endif
-
+#endif
 // Note: Technically, the shift count of palignr can be any value of [0-255]. But practically speaking, the
 // shift count should be a value of [0-15]. If we assume that the value range will always be [0-15], we can
 // then substitute the palignr instruction with an SSE2 equivalent.

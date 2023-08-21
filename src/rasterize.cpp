@@ -45,8 +45,12 @@
 #include <stdint.h>
 #endif
 
+#ifdef __vita__
+#include "vita/sse2neon.h"
+#else
 #ifdef ENABLE_SSE2
 #include <emmintrin.h>
+#endif
 #endif
 
 #include "bits.h"
@@ -1176,9 +1180,7 @@ SoftRasterizerRenderer::SoftRasterizerRenderer()
 		_HACK_viewer_rasterizerUnit._debug_thisPoly = false;
 		_HACK_viewer_rasterizerUnit.SLI_MASK = 1;
 		_HACK_viewer_rasterizerUnit.SLI_VALUE = 0;
-		
 		rasterizerCores = CommonSettings.num_cores;
-		
 		if (rasterizerCores > _MAX_CORES)
 			rasterizerCores = _MAX_CORES;
 		

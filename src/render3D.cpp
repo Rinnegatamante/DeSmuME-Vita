@@ -20,8 +20,12 @@
 
 #include <string.h>
 
+#ifdef __vita__
+#include "vita/sse2neon.h"
+#else
 #ifdef ENABLE_SSE2
 #include <emmintrin.h>
+#endif
 #endif
 
 #include "bits.h"

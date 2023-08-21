@@ -25,12 +25,16 @@
 #include "types.h"
 #include "mem.h"
 
+#ifdef __vita__
+#include "vita/sse2neon.h"
+#else
 #ifdef ENABLE_SSE
 #include <xmmintrin.h>
 #endif
 
 #ifdef ENABLE_SSE2
 #include <emmintrin.h>
+#endif
 #endif
 
 struct MatrixStack
